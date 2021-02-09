@@ -6,25 +6,51 @@
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.5.0/css/all.min.css" integrity="sha512-QfDd74mlg8afgSqm3Vq2Q65e9b3xMhJB4GZ9OcHDVy1hZ6pqBJPWWnMsKDXM7NINoKqJANNGBuVRIpIJ5dogfA==" crossorigin="anonymous" />
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     </head>
     <body>
       <div id="root">
         <!-- header e nav -->
-        <header class="shadow flex">
-          <div class="">
-            <input type="text" name="" value="" v-model="userSearch" placeholder="inizia a cercare film" v-on:keyup.13="searchAPI">
+        <header class="flex shadow">
+          <div class="logo-container">
+            <img src="img/logo.png" alt="">
           </div>
-          <button type="button" name="button" @click="searchAPI" >Search Movies</button>
+          <div class="navbar-menu1">
+            <ul class="flex">
+              <li>Home</li>
+              <li>TV Shows</li>
+              <li>Movies</li>
+              <li>Recently Added</li>
+              <li>My List</li>
+            </ul>
+          </div>
+          <div class="navbar-menu2 flex">
+            <div class="">
+              <input type="text" name="" value="" v-model="userSearch" placeholder="inizia a cercare film" v-on:keyup.13="searchAPI">
+              <button type="button" name="button" @click="searchAPI" >Search Movies</button>
+            </div>
+            <ul class="flex">
+              <li>KIDS</li>
+              <li>DVD</li>
+              <li><i class="fas fa-gift"></i></li>
+              <li><i class="fas fa-bell"></i></li>
+              <li><i class="fas fa-user-astronaut"></i></li>
+            </ul>
+          </div>
         </header>
           <!-- header e nav -->
 
           <!-- main sec -->
         <main class="flex">
-          <div v-for="element in listMovies" class="film-container shadow flex">
+
+          <div class="film-container shadow flex" v-for="element in listMovies" v-if="userSearch != ''">
+            <div class="poster"> <img :src="'https://image.tmdb.org/t/p/w500/' + element.poster_path" alt=""> </div>
             <div class="title">{{element.title}}</div>
             <div class="original-title">{{element.original_title}}</div>
-            <div class="language">{{element.original_language}}</div>
-            <div class="rating">{{element.vote_average}}</div>
+            <div class="language">Lang: {{element.original_language}}</div>
+            <div class="rating">Rating: {{element.vote_average}}</div>
           </div>
         </main>
           <!-- main sec -->

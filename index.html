@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zxx" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>BoolFlix</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+      <div id="root">
+        <!-- header e nav -->
+        <header class="shadow flex">
+          <div class="">
+            <input type="text" name="" value="" v-model="userSearch" placeholder="inizia a cercare film" v-on:keyup.13="searchAPI">
+          </div>
+          <button type="button" name="button" @click="searchAPI" >Search Movies</button>
+        </header>
+          <!-- header e nav -->
+
+          <!-- main sec -->
+        <main class="flex">
+          <div v-for="element in listMovies" class="film-container shadow flex">
+            <div class="title">{{element.title}}</div>
+            <div class="original-title">{{element.original_title}}</div>
+            <div class="language">{{element.original_language}}</div>
+            <div class="rating">{{element.vote_average}}</div>
+          </div>
+        </main>
+          <!-- main sec -->
+
+      </div>
+    <script src="js/script.js" charset="utf-8"></script>
+    </body>
+</html>

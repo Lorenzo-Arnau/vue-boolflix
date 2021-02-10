@@ -55,8 +55,7 @@
             <div class="title"><span>Title: </span>{{element.title}}{{element.name}}</div>
             <div class="original-title" v-if="element.original_title != ''"><span>Original Title: </span>{{element.original_title}}{{element.original_name}}</div>
             <div class="rating"><span>Vote: </span>
-              <i class="fas fa-star" v-for="i in element.vote_average"></i>
-              <i class="far fa-star" v-for="i in (5 - element.vote_average)"></i>
+              <i class="fas fa-star" v-for="i in element.vote_average"></i><i class="far fa-star" v-for="i in (5 - element.vote_average)"></i>
             </div>
             <div class="overview">
             <span>Overview: </span>{{element.overview}}

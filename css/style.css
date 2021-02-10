@@ -77,7 +77,19 @@ main{
   flex-direction: column;
   cursor: pointer;
 }
-
+.nothing{
+  height: 100px;
+  width: 100%;
+  background-color: red;
+  text-align: center;
+  line-height: 100px;
+}
+.nothing span{
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-weight: bold;
+  font-size: 20px;
+}
 .title,.original-title,.language,.rating,.overview{
   width: 100%;
   min-height: 45px;

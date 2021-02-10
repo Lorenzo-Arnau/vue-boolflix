@@ -30,7 +30,7 @@ new Vue({
     },
     searchAPItvSeries : function(){
       const self = this;
-        axios.get('https://api.themoviedb.org/3/search/tv?api_key=7f4bd6b9c8030a418c2d09489d3ddda7&language=it_IT&query=' + self.userSearch)
+        axios.get('https://api.themoviedb.org/3/search/tv?api_key=7f4bd6b9c8030a418c2d09489d3ddda7&query=' + self.userSearch)
         .then(function(response) {
          self.listTvSeries = response.data.results;
          console.log( self.listTvSeries);
@@ -67,7 +67,7 @@ new Vue({
       }
     },
     filterListByGenre : function(element) {
-      if (element.genre_ids == this.userSelect) {
+      if (element.genre_ids[0] === this.userSelect) {
       return true;
       }
     },

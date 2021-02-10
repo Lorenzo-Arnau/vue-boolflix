@@ -1,5 +1,5 @@
 const votazione = 'vote_average';
-const code = ''
+const code = '';
 new Vue({
   el: '#root',
   data: {

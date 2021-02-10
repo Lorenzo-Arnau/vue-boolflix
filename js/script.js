@@ -27,7 +27,6 @@ new Vue({
         .then(function(response) {
          self.listMovies = response.data.results;
          console.log( self.listMovies);
-         self.makingRating(self.listMovies,votazione);
          });
     },
     searchAPItvSeries : function(){
@@ -36,10 +35,10 @@ new Vue({
         .then(function(response) {
          self.listTvSeries = response.data.results;
          console.log( self.listTvSeries);
-         self.makingRating(self.listTvSeries,votazione);
          self.allList = self.listMovies.concat(self.listTvSeries)
          console.log(self.allList);
          self.checkingTitle(self.allList)
+         self.makingRating(self.allList,votazione);
         });
     },
     checkingTitle :function(array){

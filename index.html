@@ -28,8 +28,8 @@
           </div>
           <div class="navbar-menu2 flex">
             <div class="">
-              <input type="text" name="" value="" v-model="userSearch" placeholder="inizia a cercare film" v-on:keyup.13="searchAPI">
-              <button type="button" name="button" @click="searchAPI" >Search Movies</button>
+              <input type="text" name="" value="" v-model="userSearch" placeholder="inizia a cercare film" v-on:keyup.13="searchAPI();searchAPItvSeries()">
+              <button type="button" name="button" @click="searchAPI();searchAPItvSeries()" >Search Movies</button>
             </div>
             <ul class="flex">
               <li>KIDS</li>
@@ -45,12 +45,18 @@
           <!-- main sec -->
         <main class="flex">
 
-          <div class="film-container shadow flex" v-for="element in listMovies" v-if="userSearch != ''">
-            <div class="poster"> <img :src="'https://image.tmdb.org/t/p/w500/' + element.poster_path" alt=""> </div>
-            <div class="title">{{element.title}}</div>
-            <div class="original-title">{{element.original_title}}</div>
-            <div class="language">Lang: {{element.original_language}}</div>
-            <div class="rating">Rating: {{element.vote_average}}</div>
+          <div class="film-container shadow flex" v-for="element in allList" v-if="userSearch != ''">
+            <div class="poster"> <img :src="imageNotAvailable(element.poster_path)" alt=""> </div>
+            <div class="title"><span>Title: </span>{{element.title}}{{element.name}}</div>
+            <div class="original-title" v-if="element.original_title != ''"><span>Original Title: </span>{{element.original_title}}{{element.original_name}}</div>
+            <div class="rating"><span>Vote: </span>
+              <i class="fas fa-star" v-for="i in element.vote_average"></i>
+            </div>
+            <div class="overview">
+            <span>Overview: </span>{{element.overview}}
+            </div>
+            <div class="language">
+              <img :src="'img/'+ langToFlag(element.original_language) +'.png'" alt="">{{element.original_language}}</div>
           </div>
         </main>
           <!-- main sec -->

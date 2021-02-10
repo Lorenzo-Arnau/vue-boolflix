@@ -1,4 +1,5 @@
 const votazione = 'vote_average';
+const code = ''
 new Vue({
   el: '#root',
   data: {
@@ -15,6 +16,7 @@ new Vue({
         axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=7f4bd6b9c8030a418c2d09489d3ddda7')
         .then(function(response) {
          self.genresList = response.data.genres;
+         // TODO: funzione che, in base al codice di ogni film traduce quel codice nella relativa categoria
          console.log(self.genresList);
          });
   },
@@ -71,7 +73,9 @@ new Vue({
       return true;
       }
     },
-
+    convertGenre : function(){
+     // TODO: funzione che, in base al codice di ogni film traduce quel codice nella relativa categoria
+    },
   },
 });
 Vue.config.devtools = true

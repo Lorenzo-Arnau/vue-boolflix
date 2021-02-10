@@ -2,14 +2,21 @@ const votazione = 'vote_average';
 new Vue({
   el: '#root',
   data: {
+      genresList:[],
       listMovies:[],
       listTvSeries:[],
       allList:[],
+      userSelect:'',
       userSearch:'',
       listLang: ['en','de','fr','it','es']
   },
   mounted() {
-
+      const self = this;
+        axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=7f4bd6b9c8030a418c2d09489d3ddda7')
+        .then(function(response) {
+         self.genresList = response.data.genres;
+         console.log(self.genresList);
+         });
   },
   methods:{
     searchAPI : function(){
@@ -58,7 +65,12 @@ new Vue({
       }else {
         return 'img/notAvailable.png'
       }
-    }
+    },
+    filterListByGenre : function(element) {
+      if (element.genre_ids == this.userSelect) {
+      return true;
+      }
+    },
 
   },
 });

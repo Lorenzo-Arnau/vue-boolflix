@@ -72,8 +72,15 @@ new Vue({
       return true;
       }
     },
-    convertGenre : function(){
-     // TODO: funzione che, in base al codice di ogni film traduce quel codice nella relativa categoria
+    convertGenre : function(elementGenre){
+    const findElement = this.genresList.find((element)=>{
+       return element.id == elementGenre;
+     });
+     if (findElement) {
+       return findElement.name
+     }else {
+       return elementGenre;
+     }
     },
   },
 });

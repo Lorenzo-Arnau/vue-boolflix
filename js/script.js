@@ -111,7 +111,7 @@ new Vue({
           case 'tv':
           return this.listTvSeries
           break;
-        default:
+          default:
           return this.allList;
       }
     }

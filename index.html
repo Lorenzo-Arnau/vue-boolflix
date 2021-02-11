@@ -61,8 +61,9 @@
             <span>Overview: </span>{{element.overview}}
             </div>
             <div class="language">
-              <img :src="'img/'+ langToFlag(element.original_language) +'.png'" alt="">{{element.original_language}}
-            <span v-for="genreId in element.genre_ids">{{convertGenre(genreId)}}</span>
+              <img :src="'img/'+ langToFlag(element.original_language) +'.png'" alt="">Language: |{{element.original_language}}|
+              <span v-for="genreId in element.genre_ids">{{convertGenre(genreId)}}-</span>
+              <span >{{actorsbyID(element.id)}}</span>
             </div>
           </div>
         </main>

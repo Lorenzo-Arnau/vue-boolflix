@@ -9,14 +9,13 @@ new Vue({
       allList:[],
       userSelect:'',
       userSearch:'',
-      listLang: ['en','de','fr','it','es']
+      listLang: ['en','de','fr','it','es'],
   },
   mounted() {
       const self = this;
         axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=7f4bd6b9c8030a418c2d09489d3ddda7')
         .then(function(response) {
          self.genresList = response.data.genres;
-         // TODO: funzione che, in base al codice di ogni film traduce quel codice nella relativa categoria
          console.log(self.genresList);
          });
   },
@@ -81,6 +80,22 @@ new Vue({
      }else {
        return elementGenre;
      }
+    },
+    actorsbyID : function(elementId){
+    const self = this;
+    let actor;
+    let actorsList =[];
+    axios.get('https://api.themoviedb.org/3/movie/'+ elementId +'/credits?api_key=7f4bd6b9c8030a418c2d09489d3ddda7')
+      .then(function(response) {
+        let actorsArray = response.data.cast;
+        actorsArray.forEach((item, i) => {
+          actorsList.push(item.name)
+         });
+         console.log(actorsList);
+         console.log(actorsList[0]);
+         self.actor = actorsList[0];
+         return self.actor;
+       });
     },
   },
 });

@@ -32,9 +32,14 @@
               <input type="text" name="" value="" v-model="userSearch" placeholder="inizia a cercare film" v-on:keyup.13="searchAPI();searchAPItvSeries()">
               <button type="button" name="button" @click="searchAPI();searchAPItvSeries()" >Search Movies</button>
             </div>
-            <select class="" v-model="userSelect" @click="userSearch = '';">
+            <select class="select" v-model="userSelect" @click="userSearch = '';">
               <option value="">All</option>
               <option :value="element.id" v-for="(element,index) in genresList">{{element.name}}</option>
+            </select>
+            <select class="" v-model="changeView">
+              <option value="moviestv">Movies + Tv Series</option>
+              <option value="movies">Movies Only</option>
+              <option value="tv">Series Only</option>
             </select>
             <ul class="flex">
               <li>KIDS</li>
@@ -50,7 +55,7 @@
           <!-- main sec -->
         <main class="flex">
           <div class="nothing" v-if="allList.length <= 0"><span>We didn't find anything, you're sure you wrote it right? Click on button 'Search' when you're ready</span></div>
-          <div class="film-container shadow flex" v-for="element in allList" v-if="userSearch != '' || filterListByGenre(element) || userSelect == ''" @mouseenter="actorsbyID(element.id)">
+          <div class="film-container shadow flex" v-for="element in changeModel()" v-if="userSearch != '' || filterListByGenre(element) || userSelect == ''" @mouseenter="actorsbyID(element.id)">
             <div class="poster"> <img :src="imageNotAvailable(element.poster_path)" alt=""> </div>
             <div class="title"><span>Title: </span>{{element.title}}{{element.name}}</div>
             <div class="original-title" v-if="element.original_title != ''"><span>Original Title: </span>{{element.original_title}}{{element.original_name}}</div>

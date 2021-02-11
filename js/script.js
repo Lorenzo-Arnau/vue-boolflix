@@ -3,6 +3,7 @@ new Vue({
   el: '#root',
   data: {
       actors:'',
+      changeView:'moviestv',
       genresList:[],
       listMovies:[],
       listTvSeries:[],
@@ -99,7 +100,21 @@ new Vue({
          return self.actors = actors
        });
     },
-
+    changeModel : function(){
+      switch (this.changeView) {
+          case 'moviestv':
+          return this.allList
+          break;
+          case 'movies':
+          return this.listMovies
+          break;
+          case 'tv':
+          return this.listTvSeries
+          break;
+        default:
+          return this.allList;
+      }
+    }
   },
 });
 Vue.config.devtools = true

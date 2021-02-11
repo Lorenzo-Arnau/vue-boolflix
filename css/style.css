@@ -34,9 +34,12 @@ header div{
   padding-top: 15px;
 }
 .navbar-menu1,.navbar-menu2{
-  width: 45%;
+  width: 40%;
   justify-content: space-around;
   align-items: center;
+}
+.navbar-menu2{
+  width: 50%;
 }
 .navbar-menu2 i{
   transform: scale(1.5);
@@ -54,6 +57,9 @@ border: none;
 border-radius: 2px;
 font-weight: bold;
 background-color: #FA0814;
+}
+.selectone{
+  margin-right: 5px;
 }
 .navbar-menu1 li,.navbar-menu2 li{
 list-style: none;

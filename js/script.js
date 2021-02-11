@@ -83,19 +83,18 @@ new Vue({
     },
     actorsbyID : function(elementId){
     const self = this;
-    let actor;
-    let actorsList =[];
-    axios.get('https://api.themoviedb.org/3/movie/'+ elementId +'/credits?api_key=7f4bd6b9c8030a418c2d09489d3ddda7')
+    const principalActor = axios.get('https://api.themoviedb.org/3/movie/'+ elementId +'/credits?api_key=7f4bd6b9c8030a418c2d09489d3ddda7')
       .then(function(response) {
+        let actorsList =[];
         let actorsArray = response.data.cast;
         actorsArray.forEach((item, i) => {
           actorsList.push(item.name)
          });
          console.log(actorsList);
          console.log(actorsList[0]);
-         self.actor = actorsList[0];
-         return self.actor;
+         return actorsList[0];
        });
+       return principalActor;
     },
   },
 });

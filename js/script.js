@@ -1,8 +1,8 @@
 const votazione = 'vote_average';
-const code = '';
 new Vue({
   el: '#root',
   data: {
+      actors:'',
       genresList:[],
       listMovies:[],
       listTvSeries:[],
@@ -92,7 +92,11 @@ new Vue({
          });
          console.log(actorsList);
          console.log(actorsList[0]);
-         return actorsList[0];
+         var actors='';
+         for (var i = 0; i < 5; i++) {
+         actors += (actorsList[i] + ' - ')
+         }
+         return self.actors = actors
        });
     },
 

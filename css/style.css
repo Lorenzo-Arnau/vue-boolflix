@@ -14,7 +14,12 @@
 .flex{
   display: flex;
 }
+.white{
+  color: #fff;
+}
 /* utility class */
+
+/* header parts */
 header{
   width: 100%;
   height: 80px;
@@ -64,8 +69,10 @@ background-color: #FA0814;
 .navbar-menu1 li,.navbar-menu2 li{
 list-style: none;
 margin: 0 15px;
-color: #fff;
 }
+/* header parts */
+
+/* main parts */
 main{
   flex-wrap: wrap;
   background-color: #141414;
@@ -75,10 +82,8 @@ main{
 .film-container{
   width: 300px;
   height: 450px;
-  /* background-color: #000; */
   margin: 25px;
   text-align: center;
-  color: #fff;
   position: relative;
   flex-direction: column;
   cursor: pointer;
@@ -92,7 +97,6 @@ main{
 }
 .nothing span{
   background-color: rgba(0, 0, 0, 0.5);
-  color: #fff;
   font-weight: bold;
   font-size: 20px;
 }
@@ -131,3 +135,4 @@ main{
 .film-container:hover .overview{
   z-index: 1;
 }
+/* main parts */

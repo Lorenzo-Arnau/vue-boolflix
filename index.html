@@ -20,11 +20,11 @@
           </div>
           <div class="navbar-menu1">
             <ul class="flex">
-              <li>Home</li>
-              <li>TV Shows</li>
-              <li>Movies</li>
-              <li>Recently Added</li>
-              <li>My List</li>
+              <li class="white">Home</li>
+              <li class="white">TV Shows</li>
+              <li class="white">Movies</li>
+              <li class="white">Recently Added</li>
+              <li class="white">My List</li>
             </ul>
           </div>
           <div class="navbar-menu2 flex">
@@ -42,11 +42,11 @@
               <option value="tv">Series Only</option>
             </select>
             <ul class="flex">
-              <li>KIDS</li>
-              <li>DVD</li>
-              <li><i class="fas fa-gift"></i></li>
-              <li><i class="fas fa-bell"></i></li>
-              <li><i class="fas fa-user-astronaut"></i></li>
+              <li class="white">KIDS</li>
+              <li class="white">DVD</li>
+              <li class="white"><i class="fas fa-gift"></i></li>
+              <li class="white"><i class="fas fa-bell"></i></li>
+              <li class="white"><i class="fas fa-user-astronaut"></i></li>
             </ul>
           </div>
         </header>
@@ -54,8 +54,8 @@
 
           <!-- main sec -->
         <main class="flex">
-          <div class="nothing" v-if="allList.length <= 0"><span>We didn't find anything, you're sure you wrote it right? Click on button 'Search' when you're ready</span></div>
-          <div class="film-container shadow flex" v-for="element in changeModel()" v-if="userSearch != '' || filterListByGenre(element) || userSelect == ''" @mouseenter="actorsbyID(element.id)">
+          <div class="nothing" v-if="allList.length <= 0"><span class="white">We didn't find anything, you're sure you wrote it right? Click on button 'Search' when you're ready</span></div>
+          <div class="film-container shadow flex white" v-for="element in changeModel()" v-if="userSearch != '' || filterListByGenre(element) || userSelect == ''" @mouseenter="actorsbyID(element.id)">
             <div class="poster"> <img :src="imageNotAvailable(element.poster_path)" alt=""> </div>
             <div class="title"><span>Title: </span>{{element.title}}{{element.name}}</div>
             <div class="original-title" v-if="element.original_title != ''"><span>Original Title: </span>{{element.original_title}}{{element.original_name}}</div>

@@ -17,7 +17,6 @@ new Vue({
         axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=7f4bd6b9c8030a418c2d09489d3ddda7')
         .then(function(response) {
          self.genresList = response.data.genres;
-         console.log(self.genresList);
          });
   },
   methods:{
@@ -26,7 +25,6 @@ new Vue({
         axios.get('https://api.themoviedb.org/3/search/movie?api_key=7f4bd6b9c8030a418c2d09489d3ddda7&query=' + self.userSearch)
         .then(function(response) {
          self.listMovies = response.data.results;
-         console.log( self.listMovies);
          });
     },
     searchAPItvSeries : function(){
@@ -34,9 +32,7 @@ new Vue({
         axios.get('https://api.themoviedb.org/3/search/tv?api_key=7f4bd6b9c8030a418c2d09489d3ddda7&query=' + self.userSearch)
         .then(function(response) {
          self.listTvSeries = response.data.results;
-         console.log( self.listTvSeries);
          self.allList = self.listMovies.concat(self.listTvSeries)
-         console.log(self.allList);
          self.checkingTitle(self.allList)
          self.makingRating(self.allList,votazione);
         });
@@ -91,8 +87,6 @@ new Vue({
         actorsArray.forEach((item, i) => {
           actorsList.push(item.name)
          });
-         console.log(actorsList);
-         console.log(actorsList[0]);
          var actors='';
          for (var i = 0; i < 5; i++) {
          actors += (actorsList[i] + ' - ')

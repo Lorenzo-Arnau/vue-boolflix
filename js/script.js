@@ -57,7 +57,7 @@ new Vue({
       }
     },
     imageNotAvailable : function(imgPath){
-      if (imgPath != null) {
+      if (imgPath) {
         return 'https://image.tmdb.org/t/p/w500/'+ imgPath;
       }else {
         return 'img/notAvailable.png'

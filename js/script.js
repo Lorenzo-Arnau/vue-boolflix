@@ -11,6 +11,7 @@ new Vue({
       userSelect:'',
       userSearch:'',
       listLang: ['en','de','fr','it','es'],
+      cachetry:[],
   },
   mounted() {
       const self = this;
@@ -25,7 +26,16 @@ new Vue({
         axios.get('https://api.themoviedb.org/3/search/movie?api_key=7f4bd6b9c8030a418c2d09489d3ddda7&query=' + self.userSearch)
         .then(function(response) {
          self.listMovies = response.data.results;
+         // --------------------// TODO: cache try method
+         let searching = {
+             search:self.userSearch,
+             results: self.listMovies,
+           }
+         self.cachetry.push(searching)
+         console.log(searching);
+         console.log(self.cachetry);
          });
+         // --------------------// TODO: cache try method
     },
     searchAPItvSeries : function(){
       const self = this;

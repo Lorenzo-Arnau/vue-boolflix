@@ -32,6 +32,7 @@ new Vue({
         self.makingRating(self.listPopoularMovies,votazione);
         self.makingRating(self.listPopoularTV,votazione);
         self.firstElement = self.listPopoularTV[0];
+        self.actorsbyID(self.listPopoularTV[0].id)
       })).catch(errors => {
         console.log('error on load');
       })
@@ -50,6 +51,7 @@ new Vue({
         self.allList = self.listMovies.concat(self.listTvSeries)
         self.checkingTitle(self.allList)
         self.makingRating(self.allList,votazione);
+        self.actorsbyID(self.allList[0].id)
         self.firstElement = self.allList[0];
       })).catch(errors => {
         console.log('error on load');

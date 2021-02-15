@@ -82,6 +82,7 @@ main,.first-sight{
   background-color: #141414;
   min-height:calc(100vh - 80px);
   width: 100%;
+  overflow-x: scroll;
 }
 .titleone{
   width: 100%;

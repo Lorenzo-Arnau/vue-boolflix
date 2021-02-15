@@ -20,7 +20,7 @@
           </div>
           <div class="navbar-menu1">
             <ul class="flex">
-              <li class="white">Home</li>
+              <li class="white"><a href="index.html">Home</a></li>
               <li class="white">TV Shows</li>
               <li class="white">Movies</li>
               <li class="white">Recently Added</li>
@@ -54,16 +54,31 @@
 
           <!-- main sec -->
         <main class="flex">
-          <div class="film-container shadow flex white" v-for="element in listPopoularTV" v-if="userSearch == ''">
+          <div class="first-sight flex" v-if="userSearch == ''">
+          <div class="copertina flex">
+          <img :src="imageNotAvailable(firstElement.poster_path)" alt="">
+          <div class="misc">
+            <div class="coverTitle">{{firstElement.title}}{{firstElement.name}}</div>
+            <div class="coverOverview">{{firstElement.overview}}</div>
+            <div class="coverLanguage">
+              <img :src="'img/'+ langToFlag(firstElement.original_language) +'.png'" alt="">Language: |{{firstElement.original_language}}|
+            </div>
+
+          </div>
+          </div>
+          <div class="titleone flex">
+          <h2 class="white">Popoular Series </h2>
+          </div>
+          <div class="cover-container shadow flex white" v-for="element in listPopoularTV" @click="setFirst(element)">
             <div class="poster"> <img :src="imageNotAvailable(element.poster_path)" alt=""> </div>
           </div>
-
-          <div class="film-container shadow flex white" v-for="element in listPopoularMovies" v-if="userSearch == ''">
+          <div class="titleone flex">
+          <h2 class="white">Popoular Movies</h2>
+          </div>
+          <div class="cover-container shadow flex white" v-for="element in listPopoularMovies" v-if="userSearch == ''" @click="setFirst(element)">
           <div class="poster"> <img :src="imageNotAvailable(element.poster_path)" alt=""> </div>
           </div>
-
-
-
+        </div>
           <div class="nothing" v-if="allList.length <= 0"><span class="white">We didn't find anything, you're sure you wrote it right? Click on button 'Search' when you're ready</span></div>
           <div class="film-container shadow flex white" v-for="element in changeModel()" v-if="userSearch != '' || filterListByGenre(element) || userSelect == ''" @mouseenter="actorsbyID(element.id)">
             <div class="poster"> <img :src="imageNotAvailable(element.poster_path)" alt=""> </div>

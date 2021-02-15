@@ -112,22 +112,21 @@ new Vue({
     changeModel : function(){
       switch (this.changeView) {
           case 'moviestv':
-
           return this.allList
           break;
           case 'movies':
-
           return this.listMovies
           break;
           case 'tv':
-
           return this.listTvSeries
           break;
           default:
-        
           return this.allList;
       }
-    }
+    },
+    setFirst: function(element){
+      this.firstElement = element;
+    },
   },
 });
 Vue.config.devtools = true

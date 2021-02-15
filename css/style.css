@@ -59,6 +59,7 @@ header div{
 padding: 5px;
 margin-left: 10px;
 border: none;
+cursor: pointer;
 border-radius: 2px;
 font-weight: bold;
 background-color: #FA0814;
@@ -66,8 +67,15 @@ background-color: #FA0814;
 .selectone{
   margin-right: 5px;
 }
+select{
+  border: none;
+  border-radius: 10px;
+  height: 25px;
+  cursor: pointer;
+}
 .navbar-menu1 li,.navbar-menu2 li{
 list-style: none;
+cursor: pointer;
 margin: 0 15px;
 }
 /* header parts */

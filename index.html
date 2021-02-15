@@ -71,11 +71,11 @@
             <!-- copertina interattiva -->
 
             <!-- sezione popoular -->
-          <div class="first-sight flex" v-if="userSearch == ''">
+          <div class="first-sight flex" v-if="userSearch == '' && switcher == false">
           <div class="titleone flex">
           <h2 class="white">Popoular Series </h2>
           </div>
-          <div class="cover-container shadow flex white" v-for="element in listPopoularTV" @click="setFirst(element)">
+          <div class="cover-container shadow flex white" v-for="element in listPopoularTV" @click="setFirst(element)" v-if="userSearch == ''">
             <div class="poster"> <img :src="imageNotAvailable(element.poster_path)" alt=""> </div>
           </div>
           <div class="titleone flex">

@@ -3,6 +3,7 @@ new Vue({
   el: '#root',
   data: {
       actors:'',
+      switcher:false,
       changeView:'moviestv',
       genresList:[],
       listMovies:[],
@@ -84,6 +85,7 @@ new Vue({
       }
     },
     filterListByGenre : function(element) {
+      this.switcher = true;
       if (element.genre_ids[0] === this.userSelect) {
       return true;
       }

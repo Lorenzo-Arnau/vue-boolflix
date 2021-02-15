@@ -63,7 +63,8 @@
                 <i class="fas fa-star" v-for="i in firstElement.vote_average"></i><i class="far fa-star" v-for="i in (5 - firstElement.vote_average)"></i>
               </div>
               <div class="coverLanguage">
-                <img :src="'img/'+ langToFlag(firstElement.original_language) +'.png'" alt="">Language: |{{firstElement.original_language}}|
+                <img :src="'img/'+ langToFlag(firstElement.original_language) +'.png'" alt="">Language: |{{firstElement.original_language}}| <br>
+                {{actors}}
               </div>
             </div>
           </div>

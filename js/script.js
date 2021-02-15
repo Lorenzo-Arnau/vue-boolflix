@@ -110,6 +110,8 @@ new Vue({
          actors += (actorsList[i] + ' - ')
          }
          return self.actors = actors
+       }).catch(errors => {
+         return self.actors = 'Oops! something gone wrong no actors finded'
        });
     },
     changeModel : function(){
@@ -132,6 +134,7 @@ new Vue({
     },
     setFirst: function(element){
       this.firstElement = element;
+      this.actorsbyID(element.id);
       window.scrollTo({
       top: 0,
       left: 0,

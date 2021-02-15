@@ -7,29 +7,44 @@ new Vue({
       genresList:[],
       listMovies:[],
       listTvSeries:[],
+      listPopoularTV:[],
+      firstElement:[],
+      listPopoularMovies:[],
       allList:[],
       userSelect:'',
       userSearch:'',
       listLang: ['en','de','fr','it','es'],
+      key:'?api_key=7f4bd6b9c8030a418c2d09489d3ddda7',
   },
   mounted() {
       const self = this;
-        axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=7f4bd6b9c8030a418c2d09489d3ddda7')
+        axios.get('https://api.themoviedb.org/3/genre/movie/list' + self.key)
         .then(function(response) {
          self.genresList = response.data.genres;
          });
+        axios.get('https://api.themoviedb.org/3/trending/movie/day'+  self.key)
+        .then(function(response) {
+        self.listPopoularMovies = response.data.results;
+        console.log(self.listPopoularMovies);
+        });
+        axios.get('https://api.themoviedb.org/3/trending/tv/day' + self.key)
+        .then(function(response) {
+        self.listPopoularTV = response.data.results;
+        console.log(self.listPopoularTV);
+        self.firstElement = self.listPopoularTV[0];
+        });
   },
   methods:{
     searchAPI : function(){
       const self = this;
-        axios.get('https://api.themoviedb.org/3/search/movie?api_key=7f4bd6b9c8030a418c2d09489d3ddda7&query=' + self.userSearch)
+        axios.get('https://api.themoviedb.org/3/search/movie'+  self.key + '&query=' + self.userSearch)
         .then(function(response) {
          self.listMovies = response.data.results;
          });
     },
     searchAPItvSeries : function(){
       const self = this;
-        axios.get('https://api.themoviedb.org/3/search/tv?api_key=7f4bd6b9c8030a418c2d09489d3ddda7&query=' + self.userSearch)
+        axios.get('https://api.themoviedb.org/3/search/tv'+  self.key + '&query=' + self.userSearch)
         .then(function(response) {
          self.listTvSeries = response.data.results;
          self.allList = self.listMovies.concat(self.listTvSeries)
@@ -80,7 +95,7 @@ new Vue({
     },
     actorsbyID : function(elementId){
     const self = this;
-    return axios.get('https://api.themoviedb.org/3/movie/'+ elementId +'/credits?api_key=7f4bd6b9c8030a418c2d09489d3ddda7')
+    return axios.get('https://api.themoviedb.org/3/movie/'+ elementId +'/credits'+  self.key)
       .then(function(response) {
         let actorsList =[];
         let actorsArray = response.data.cast;
@@ -97,15 +112,19 @@ new Vue({
     changeModel : function(){
       switch (this.changeView) {
           case 'moviestv':
+
           return this.allList
           break;
           case 'movies':
+
           return this.listMovies
           break;
           case 'tv':
+
           return this.listTvSeries
           break;
           default:
+        
           return this.allList;
       }
     }

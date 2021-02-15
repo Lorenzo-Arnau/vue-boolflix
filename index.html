@@ -54,6 +54,16 @@
 
           <!-- main sec -->
         <main class="flex">
+          <div class="film-container shadow flex white" v-for="element in listPopoularTV" v-if="userSearch == ''">
+            <div class="poster"> <img :src="imageNotAvailable(element.poster_path)" alt=""> </div>
+          </div>
+
+          <div class="film-container shadow flex white" v-for="element in listPopoularMovies" v-if="userSearch == ''">
+          <div class="poster"> <img :src="imageNotAvailable(element.poster_path)" alt=""> </div>
+          </div>
+
+
+
           <div class="nothing" v-if="allList.length <= 0"><span class="white">We didn't find anything, you're sure you wrote it right? Click on button 'Search' when you're ready</span></div>
           <div class="film-container shadow flex white" v-for="element in changeModel()" v-if="userSearch != '' || filterListByGenre(element) || userSelect == ''" @mouseenter="actorsbyID(element.id)">
             <div class="poster"> <img :src="imageNotAvailable(element.poster_path)" alt=""> </div>

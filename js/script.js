@@ -18,39 +18,42 @@ new Vue({
   },
   mounted() {
       const self = this;
-        axios.get('https://api.themoviedb.org/3/genre/movie/list' + self.key)
-        .then(function(response) {
-         self.genresList = response.data.genres;
-         });
-        axios.get('https://api.themoviedb.org/3/trending/movie/day'+  self.key)
-        .then(function(response) {
-        self.listPopoularMovies = response.data.results;
-        console.log(self.listPopoularMovies);
-        });
-        axios.get('https://api.themoviedb.org/3/trending/tv/day' + self.key)
-        .then(function(response) {
-        self.listPopoularTV = response.data.results;
-        console.log(self.listPopoularTV);
+      axios.all([
+      axios.get('https://api.themoviedb.org/3/genre/movie/list' + self.key),
+      axios.get('https://api.themoviedb.org/3/trending/movie/day'+  self.key),
+      axios.get('https://api.themoviedb.org/3/trending/tv/day' + self.key)])
+      .then(axios.spread((...responses) => {
+        const responseOne = responses[0]
+        const responseTwo = responses[1]
+        const responesThree = responses[2]
+        self.genresList = responseOne.data.genres;
+        self.listPopoularMovies = responseTwo.data.results;
+        self.listPopoularTV = responesThree.data.results;
+        self.makingRating(self.listPopoularMovies,votazione);
+        self.makingRating(self.listPopoularTV,votazione);
         self.firstElement = self.listPopoularTV[0];
-        });
+      })).catch(errors => {
+        console.log('error on load');
+      })
   },
   methods:{
     searchAPI : function(){
       const self = this;
-        axios.get('https://api.themoviedb.org/3/search/movie'+  self.key + '&query=' + self.userSearch)
-        .then(function(response) {
-         self.listMovies = response.data.results;
-         });
-    },
-    searchAPItvSeries : function(){
-      const self = this;
-        axios.get('https://api.themoviedb.org/3/search/tv'+  self.key + '&query=' + self.userSearch)
-        .then(function(response) {
-         self.listTvSeries = response.data.results;
-         self.allList = self.listMovies.concat(self.listTvSeries)
-         self.checkingTitle(self.allList)
-         self.makingRating(self.allList,votazione);
-        });
+      axios.all([
+      axios.get('https://api.themoviedb.org/3/search/movie'+  self.key + '&query=' + self.userSearch),
+      axios.get('https://api.themoviedb.org/3/search/tv'+  self.key + '&query=' + self.userSearch)])
+      .then(axios.spread((...responses) => {
+        const responseMovie = responses[0]
+        const responseTv = responses[1]
+        self.listMovies =responseMovie.data.results;
+        self.listTvSeries = responseTv.data.results;
+        self.allList = self.listMovies.concat(self.listTvSeries)
+        self.checkingTitle(self.allList)
+        self.makingRating(self.allList,votazione);
+        self.firstElement = self.allList[0];
+      })).catch(errors => {
+        console.log('error on load');
+      })
     },
     checkingTitle :function(array){
       array.forEach((item, i) => {
@@ -115,17 +118,25 @@ new Vue({
           return this.allList
           break;
           case 'movies':
+          this.firstElement = this.listMovies[0];
           return this.listMovies
           break;
           case 'tv':
+          this.firstElement = this.listTvSeries[0];
           return this.listTvSeries
           break;
           default:
+          this.firstElement = this.allList[0];
           return this.allList;
       }
     },
     setFirst: function(element){
       this.firstElement = element;
+      window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+      });
     },
   },
 });

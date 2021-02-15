@@ -29,8 +29,8 @@
           </div>
           <div class="navbar-menu2 flex">
             <div class="">
-              <input type="text" name="" value="" v-model="userSearch" placeholder="inizia a cercare film" v-on:keyup.enter="searchAPI();searchAPItvSeries();setFirst(allList[0]);">
-              <button type="button" name="button" @click="searchAPI();searchAPItvSeries();setFirst(allList[0]);" >Search Movies</button>
+              <input type="text" name="" value="" v-model="userSearch" placeholder="inizia a cercare film" v-on:keyup.enter="searchAPI();setFirst(allList[0]);">
+              <button type="button" name="button" @click="searchAPI();setFirst(allList[0]);" >Search Movies</button>
             </div>
             <select class="select" v-model="userSelect" @click="userSearch = '';">
               <option value="">All</option>
@@ -54,16 +54,22 @@
 
           <!-- main sec -->
         <main class="flex">
+          <!-- copertina interattiva -->
           <div class="copertina flex" v-if="userSearch == '' || allList.length > 0">
             <img :src="imageNotAvailable(firstElement.poster_path)" alt="">
             <div class="misc">
               <div class="coverTitle">{{firstElement.title}}{{firstElement.name}}</div>
-              <div class="coverOverview">{{firstElement.overview}}</div>
+              <div class="coverOverview">{{firstElement.overview}} <br>
+                <i class="fas fa-star" v-for="i in firstElement.vote_average"></i><i class="far fa-star" v-for="i in (5 - firstElement.vote_average)"></i>
+              </div>
               <div class="coverLanguage">
                 <img :src="'img/'+ langToFlag(firstElement.original_language) +'.png'" alt="">Language: |{{firstElement.original_language}}|
               </div>
             </div>
           </div>
+            <!-- copertina interattiva -->
+
+            <!-- sezione popoular -->
           <div class="first-sight flex" v-if="userSearch == ''">
           <div class="titleone flex">
           <h2 class="white">Popoular Series </h2>
@@ -78,7 +84,13 @@
           <div class="poster"> <img :src="imageNotAvailable(element.poster_path)" alt=""> </div>
           </div>
         </div>
+          <!-- sezione popoular -->
+
+          <!-- sezione nothing find -->
           <div class="nothing" v-if="allList.length <= 0"><span class="white">We didn't find anything more, you're sure you wrote it right? Click on button 'Search' when you're ready</span></div>
+          <!-- sezione nothing find -->
+
+          <!-- main section by search -->
           <div class="film-container shadow flex white" v-for="element in changeModel()" v-if="userSearch != '' || filterListByGenre(element) || userSelect == ''" @mouseenter="actorsbyID(element.id)" @click="setFirst(element)">
             <div class="poster"> <img :src="imageNotAvailable(element.poster_path)" alt=""> </div>
             <div class="title"><span>Title: </span>{{element.title}}{{element.name}}</div>
@@ -97,6 +109,7 @@
               <span>With: {{actors}}</span>
             </div>
           </div>
+              <!-- main section by search -->
         </main>
           <!-- main sec -->
 

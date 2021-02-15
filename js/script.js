@@ -120,14 +120,17 @@ new Vue({
           return this.allList
           break;
           case 'movies':
+          this.actorsbyID(this.listMovies[0].id);
           this.firstElement = this.listMovies[0];
           return this.listMovies
           break;
           case 'tv':
+          this.actorsbyID(this.listTvSeries[0].id);
           this.firstElement = this.listTvSeries[0];
           return this.listTvSeries
           break;
           default:
+          this.actorsbyID(this.allList[0].id);
           this.firstElement = this.allList[0];
           return this.allList;
       }

@@ -92,6 +92,9 @@
           <!-- sezione nothing find -->
 
           <!-- main section by search -->
+          <div class="titleone flex" v-if="allList.length > 0">
+          <h2 class="white">Results</h2>
+          </div>
           <div class="film-container shadow flex white" v-for="element in changeModel()" v-if="userSearch != '' || filterListByGenre(element) || userSelect == ''" @click="setFirst(element);actorsbyID(element.id);">
             <div class="poster"> <img :src="imageNotAvailable(element.poster_path)" alt=""> </div>
             <div class="title"><span>Title: </span>{{element.title}}{{element.name}}</div>
@@ -106,7 +109,7 @@
               <img :src="'img/'+ langToFlag(element.original_language) +'.png'" alt="">Language: |{{element.original_language}}|
             </div>
             <div class="misc">
-              <span v-for="genreId in element.genre_ids">{{convertGenre(genreId)}}-</span>    
+              <span v-for="genreId in element.genre_ids">{{convertGenre(genreId)}}-</span>
             </div>
           </div>
               <!-- main section by search -->
